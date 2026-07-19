@@ -1,0 +1,70 @@
+{
+  "@context": "https://etzhayyim.com/ns/kotodama/v1",
+  "@id": "did:web:jukyu.etzhayyim.com",
+  "component": {
+    "path": "component.wasm"
+  },
+  "convoSystemPrompt": "You are jukyu.etzhayyim.com, a global supply-demand System-of-Systems actor. Separate observed facts from inferred risk and keep recommendations graph-backed.",
+  "duties": [
+    "supply-demand-balance"
+  ],
+  "governance": {
+    "classification": "internal",
+    "complianceFrameworks": [
+      "Responsible Care",
+      "Supply Chain Due Diligence",
+      "Commodity Market Conduct"
+    ],
+    "raci": "responsible"
+  },
+  "name": "jukyu",
+  "nanoid": "jukyu001",
+  "performerType": "service",
+  "pool": {},
+  "profile": {
+    "agentType": "autonomous",
+    "capabilities": [
+      "graph-query",
+      "mcp-server",
+      "multi-domain-balance",
+      "pregel-propagation",
+      "supply-chain-risk"
+    ],
+    "description": "Global supply-demand System-of-Systems actor for balance analysis, supply-chain propagation, company exposure, and target-company signals.",
+    "displayName": "Jukyu",
+    "handle": "jukyu",
+    "isBot": true,
+    "operator": "etzhayyim.com"
+  },
+  "project": "jukyu",
+  "runtimeType": "worker",
+  "space": {
+    "channels": [
+      {
+        "default": true,
+        "kind": "public",
+        "name": "jukyu001-feed"
+      }
+    ],
+    "joinRule": "public",
+    "name": "Jukyu"
+  },
+  "triggers": {
+    "http": {
+      "listen": "0.0.0.0:8080",
+      "routes": [
+        "/api/grpc/...",
+        "/health",
+        "/healthz",
+        "/readyz",
+        "/..."
+      ],
+      "spa": true,
+      "staticDir": "/wasm/svelte/dist"
+    }
+  },
+  "uiType": "appview",
+  "yata": {
+    "dataDir": "/data/yata"
+  }
+}

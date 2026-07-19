@@ -1,0 +1,64 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "health":                   "lg_jukyu.graphs.health:GRAPH",
+    "query_balance":            "lg_jukyu.graphs.query_balance:GRAPH",
+    "query_supply_chain":       "lg_jukyu.graphs.query_supply_chain:GRAPH",
+    "rank_company_exposure":    "lg_jukyu.graphs.rank_company_exposure:GRAPH",
+    "explain_node":             "lg_jukyu.graphs.explain_node:GRAPH",
+    "run_stress_propagation":   "lg_jukyu.graphs.run_stress_propagation:GRAPH",
+    "upsert_signal":            "lg_jukyu.graphs.upsert_signal:GRAPH",
+    "export_brief":             "lg_jukyu.graphs.export_brief:GRAPH",
+    "notify_company":           "lg_jukyu.graphs.notify_company:GRAPH",
+    "normalize_domain_adapter": "lg_jukyu.graphs.normalize_domain_adapter:GRAPH",
+    "extract_shocks":           "lg_jukyu.graphs.extract_shocks:GRAPH",
+    "equilibrium":              "lg_jukyu.graphs.equilibrium:GRAPH"
+  },
+  "checkpointer": {
+    "type": "custom",
+    "module": "lg_jukyu.checkpointer",
+    "func": "build_checkpointer"
+  },
+  "crons": [
+    {
+      "graph": "equilibrium",
+      "schedule": "*/15 * * * *",
+      "input": { "with_llm": false }
+    },
+    {
+      "graph": "normalize_domain_adapter",
+      "schedule": "7 * * * *",
+      "input": { "domain": "naphtha" }
+    },
+    {
+      "graph": "normalize_domain_adapter",
+      "schedule": "17 * * * *",
+      "input": { "domain": "crude_oil" }
+    },
+    {
+      "graph": "normalize_domain_adapter",
+      "schedule": "27 */2 * * *",
+      "input": { "domain": "energy" }
+    },
+    {
+      "graph": "normalize_domain_adapter",
+      "schedule": "37 */2 * * *",
+      "input": { "domain": "food" }
+    },
+    {
+      "graph": "normalize_domain_adapter",
+      "schedule": "47 */3 * * *",
+      "input": { "domain": "metals" }
+    },
+    {
+      "graph": "normalize_domain_adapter",
+      "schedule": "57 */3 * * *",
+      "input": { "domain": "logistics" }
+    },
+    {
+      "graph": "normalize_domain_adapter",
+      "schedule": "3 */6 * * *",
+      "input": { "domain": "transport" }
+    }
+  ]
+}

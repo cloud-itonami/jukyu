@@ -1,0 +1,7 @@
+{
+  "name": "jukyu",
+  "nanoid": "jukyu001",
+  "project": "jukyu",
+  "type": "web",
+  "runtime": "worker"
+}
