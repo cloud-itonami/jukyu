@@ -1,7 +1,7 @@
 (ns lg-jukyu.util
   "Shared helpers for the jukyu clj port — timestamps, numeric coercion,
   severity classification, string clipping. JVM/cljs portable."
-  (:require [clojure.string :as str])
+  (:require [kotoba.lang.text :as str])
   #?(:clj (:import [java.time ZonedDateTime ZoneOffset]
                    [java.time.format DateTimeFormatter])))
 

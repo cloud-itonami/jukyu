@@ -18,7 +18,7 @@
   is the one remaining infra leg — see `serve` below; the deployed FastAPI pod
   (`lg/`) remains the live runtime and COEXISTS."
   (:require #?(:clj [cheshire.core :as json])
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [langgraph.graph :as g]
             [lg-jukyu.graphs.health :as health]
             [lg-jukyu.graphs.query-balance :as query-balance]
@@ -68,10 +68,10 @@
   [s]
   (->> (map-indexed (fn [i ch]
                       (if (and #?(:clj (Character/isUpperCase ^char ch)
-                                  :cljs (and (not= ch (str/lower-case (str ch))) (= ch (first (str/upper-case (str ch))))))
+                                  :cljs (and (not= ch (str/lower (str ch))) (= ch (first (str/upper (str ch))))))
                                (pos? i))
-                        (str "_" (str/lower-case (str ch)))
-                        (str/lower-case (str ch))))
+                        (str "_" (str/lower (str ch)))
+                        (str/lower (str ch))))
                     (str s))
        (apply str)))
 
@@ -142,7 +142,7 @@
   "Pure ring-ish dispatcher. req = {:method :path :headers :query :body}.
   -> {:status :body}. Deterministically testable; bind to a socket via `serve`."
   [{:keys [method path headers body]}]
-  (let [method  (keyword (str/lower-case (name method)))
+  (let [method  (keyword (str/lower (name method)))
         x-key   (get headers "x-api-key")
         adapter (second (re-matches #"/cron/domain-adapter/(.+)" (str path)))
         nsid    (second (re-matches #"/xrpc/(.+)" (str path)))]

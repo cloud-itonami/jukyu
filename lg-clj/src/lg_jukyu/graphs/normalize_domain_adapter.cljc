@@ -11,7 +11,7 @@
   upsert counts). The domain→confidence map + validation are preserved here.
   DEVIATION: the per-table SQL upserts move into the (kotoba-Datom-log) store impl."
   (:require [langgraph.graph :as g]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [lg-jukyu.store :as store]
             [lg-jukyu.audit :as audit]
             [lg-jukyu.util :as util]))
@@ -24,7 +24,7 @@
   #{"naphtha" "crude_oil" "semiconductor" "energy" "food" "metals" "logistics" "transport"})
 
 (defn node-normalize [state]
-  (let [domain (str/lower-case (str/trim (or (:domain state) "")))]
+  (let [domain (str/lower (str/trim (or (:domain state) "")))]
     (cond
       (str/blank? domain) {:error "domain is required"}
       (not (contains? supported-domains domain))

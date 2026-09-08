@@ -6,7 +6,7 @@
   generate_brief → audit → END. DEVIATION: psycopg→`store/*read-outbox*`,
   httpx→`llm/*chat*`."
   (:require [langgraph.graph :as g]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [lg-jukyu.store :as store]
             [lg-jukyu.llm :as llm]
             [lg-jukyu.audit :as audit]
@@ -35,7 +35,7 @@
       (let [domain (or (:domain state) "global")
             signals-text (str/join "\n"
                            (map (fn [s]
-                                  (str "- [" (str/upper-case (str (:severity s))) "] "
+                                  (str "- [" (str/upper (str (:severity s))) "] "
                                        (or (:companyDid s) "?")
                                        " (risk=" (fmt (:riskScore s 0)) ", conf=" (fmt (:confidence s 0)) "): "
                                        (or (:recommendedAction s) "")))

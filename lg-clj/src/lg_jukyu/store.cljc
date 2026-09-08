@@ -11,7 +11,7 @@
 
   COEXISTENCE: the live data path stays the FastAPI/RisingWave pod under `lg/`;
   these seams are the clj twin's substrate-clean replacement, not yet wired live."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def ^:const not-configured "store not configured")
 

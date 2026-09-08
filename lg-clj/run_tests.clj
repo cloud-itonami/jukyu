@@ -2,7 +2,7 @@
   "Existing host-only entrypoint for tests and explicit live capabilities."
   (:require [babashka.http-client :as http]
             [cheshire.core :as json]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.test :as t]
             [org.httpkit.server :as httpkit]
             [lg-jukyu.audit :as audit]
@@ -30,7 +30,7 @@
 (def api-key (env "LG_API_KEY" ""))
 (def cron-enabled?
   (contains? #{"1" "true" "yes"}
-             (str/lower-case (env "LG_CRON_ENABLED" "true"))))
+             (str/lower (env "LG_CRON_ENABLED" "true"))))
 (def enrich-max (Long/parseLong (env "JUKYU_LLM_ENRICH_MAX" "10")))
 
 (defn murakumo-chat [opts]

@@ -7,7 +7,7 @@
   the response, then validates/clamps each shock. DEVIATION: httpx→`llm/*chat*`."
   (:require #?(:clj [cheshire.core :as json])
             [langgraph.graph :as g]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [lg-jukyu.llm :as llm]
             [lg-jukyu.audit :as audit]
             [lg-jukyu.util :as util]))
@@ -42,7 +42,7 @@
   (when (map? s)
     {:shockType (str (get s :shock_type "other"))
      :domain (str (get s :domain "unknown"))
-     :countryCode (-> (str (get s :country_code "XX")) (subs 0 (min 2 (count (str (get s :country_code "XX"))))) str/upper-case)
+     :countryCode (-> (str (get s :country_code "XX")) (subs 0 (min 2 (count (str (get s :country_code "XX"))))) str/upper)
      :severity (min 1.0 (max 0.0 (util/as-float (get s :severity 0.5) 0.5)))
      :durationDays (max 0 (util/as-int (get s :duration_days 0) 0))
      :description (util/clip (str (get s :description "")) 300)
