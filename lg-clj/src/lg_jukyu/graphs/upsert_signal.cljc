@@ -6,7 +6,7 @@
   Validates target_company_did, derives signal_id + severity (from risk if unset),
   then writes via the `store/*write-signal*` seam (delete-then-insert in python)."
   (:require [langgraph.graph :as g]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [lg-jukyu.store :as store]
             [lg-jukyu.audit :as audit]
             [lg-jukyu.util :as util])

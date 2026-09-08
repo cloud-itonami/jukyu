@@ -11,7 +11,7 @@
   `lg-jukyu.pregel/propagate-full` (risk weighting + confidence formula + halting
   ported exactly). DB reads/writes are `store/*` seams; LLM legs (parse_scenario,
   enrich_signals) are `llm/*chat*`. No RetryPolicy in langgraph-clj (noted)."
-  (:require [langgraph.graph :as g]
+  (:require [kotoba.lang.text] [langgraph.graph :as g]
             [lg-jukyu.store :as store]
             [lg-jukyu.llm :as llm]
             [lg-jukyu.pregel :as pregel]
@@ -28,7 +28,7 @@
 (defn- ts-compact []
   #?(:clj (.format (DateTimeFormatter/ofPattern "yyyyMMdd'T'HHmmss'Z'")
                    (ZonedDateTime/now ZoneOffset/UTC))
-     :cljs (clojure.string/replace (util/now-iso) #"[:-]" "")))
+     :cljs (kotoba.lang.text/replace (util/now-iso) #"[:-]" "")))
 
 (defn node-init-run [state]
   {:run_id (str "jukyu.global." (or (:domain state) "all") "." (ts-compact))
@@ -50,7 +50,7 @@
   (let [scenario (:scenario_text state)
         with-llm (:with_llm state false)
         seeds (into {} (:shock_seeds state {}))]
-    (if (or (not scenario) (clojure.string/blank? (str scenario)) (not with-llm))
+    (if (or (not scenario) (kotoba.lang.text/blank? (str scenario)) (not with-llm))
       {:parsed_shocks []}
       (let [res (llm/chat {:model llm/extraction-model
                              :system "You are a commodity supply-chain analyst. Output only valid JSON."

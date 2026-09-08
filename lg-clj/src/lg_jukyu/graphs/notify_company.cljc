@@ -7,7 +7,7 @@
   the BPMN dispatcher then updates delivery status. DEVIATIONS: psycopg →
   `store/*load-signal*`/`*update-status*`; httpx → `store/*dispatch-signal*`."
   (:require [langgraph.graph :as g]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [lg-jukyu.store :as store]
             [lg-jukyu.audit :as audit]))
 
