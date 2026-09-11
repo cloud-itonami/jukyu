@@ -60,7 +60,7 @@ lg/ in a venv: pip install -e '.[dev]' && pytest -q
 ```
 
 **`store not configured` is the correct answer, not a failure.** Every read and
-write in `lg-clj/src/lg_jukyu/store.cljc` is an unbound dynamic var whose default
+write in `lg-clj/src/lg_jukyu/store.cljk` is an unbound dynamic var whose default
 returns that string — deliberate parity with the Python server's behaviour when
 `RW_URL` is unset. Bind the seam and the graphs run end to end; the quickstart
 does exactly that and gets real numbers out of the Pregel core:
@@ -143,7 +143,7 @@ so does this README.
 **6. `jukyu.etzhayyim.com` does not resolve.** `dig +short` returns nothing for
 both `jukyu.etzhayyim.com` and `jukyu001.etzhayyim.com` (`etzhayyim.com` itself
 resolves through Cloudflare). So `did:web:jukyu.etzhayyim.com` — the actor DID
-that `CLAUDE.md`, `wrangler.jsonc` and `lg-clj/run_tests.clj` all default to —
+that `CLAUDE.md`, `wrangler.jsonc` and `lg-clj/run_tests.cljk` all default to —
 cannot be resolved from this workstation, and the "live pod" both CLAUDE.md files
 call the deployed runtime is not reachable from here. This is a measurement taken
 from outside; it says nothing about whether a cluster is running.

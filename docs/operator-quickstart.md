@@ -122,7 +122,7 @@ pkill -f 'run_tests.clj --server 8971'
 
 ## 4. Make the Pregel core produce actual numbers
 
-Every read and write lives in `lg-clj/src/lg_jukyu/store.cljc` as an unbound
+Every read and write lives in `lg-clj/src/lg_jukyu/store.cljk` as an unbound
 dynamic var returning `"store not configured"` — the same thing the Python server
 does with `RW_URL` unset. Bind the seam and the graphs run end to end. Save this
 as `/tmp/jukyu-pregel-demo.clj`:
@@ -338,9 +338,9 @@ quickstart does not claim to. The deployment manifests are in `etzhayyim/root` a
 
 ## Where to go next
 
-- `lg-clj/src/lg_jukyu/pregel.cljc` — the risk and confidence formulas, no I/O
-- `lg-clj/src/lg_jukyu/store.cljc` — the seam to bind for a real backend
-- `lg-clj/test/lg_jukyu/smoke_test.cljc` — 50 tests, and the reference for how to
+- `lg-clj/src/lg_jukyu/pregel.cljk` — the risk and confidence formulas, no I/O
+- `lg-clj/src/lg_jukyu/store.cljk` — the seam to bind for a real backend
+- `lg-clj/test/lg_jukyu/smoke_test.cljk` — 50 tests, and the reference for how to
   stub the store per graph
 - `lg/langgraph.json` — the 12 graphs and 8 cron schedules the cluster runs
 - `CLAUDE.md` / `JUKYU_DESIGN.md` — intent and the graph/MCP contract; check
