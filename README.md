@@ -43,10 +43,10 @@ Step-by-step commands and their full output are in
 [`docs/operator-quickstart.md`](./docs/operator-quickstart.md). Summary:
 
 ```
-cd lg-clj && bb test
+cd lg-clj && kbb -M:test
   → Ran 50 tests containing 160 assertions. 0 failures, 0 errors.
 
-cd lg-clj && LG_API_KEY=… bb run_tests.clj --server 8971
+cd lg-clj && LG_API_KEY=… kbb run_tests.cljk --server 8971
   GET  /health                      → 200, 12 graphs, version 0.1.0
   POST /runs      (correct key)     → 200 {"rw_ok":false,"error":"store not configured",…}
   POST /runs      (wrong key)       → 401 {"detail":"invalid x-api-key"}

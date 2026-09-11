@@ -3,7 +3,7 @@
   langgraph.json (ADR-2606280030).
 
   The Python version registers APScheduler jobs read from langgraph.json. Under
-  bb there is no in-process scheduler dependency; this ns instead carries the
+  kbb -M:there is no in-process scheduler dependency; this ns instead carries the
   cron SPECS as data (kept byte-faithful to langgraph.json) and a `fire!` helper
   that invokes the named graph with its base input. Residency (a real scheduler /
   launchd LaunchAgent) is a deployment-layer concern — the live FastAPI pod keeps

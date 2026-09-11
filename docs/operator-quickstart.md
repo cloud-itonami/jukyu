@@ -29,7 +29,7 @@ numbers below may have moved — re-derive them rather than trusting this file.
 ## 2. Run the Clojure suite (the fastest signal that anything works)
 
 ```bash
-cd lg-clj && bb test && cd ..
+cd lg-clj && kbb -M:test && cd ..
 ```
 
 Expected, and what you should hold this repo to:
@@ -41,7 +41,7 @@ Ran 50 tests containing 160 assertions.
 0 failures, 0 errors.
 ```
 
-`bb run_tests.clj` is the same thing without the task wrapper. `bb tasks` lists
+`kbb run_tests.cljk` is the same thing without the task wrapper. `kbb -Saliases` lists
 `test` and `server`. First run downloads two git dependencies
 (`langchain-clj`, `langgraph-clj`, both pinned by sha in `bb.edn`) and takes a
 minute; later runs are seconds.
@@ -53,7 +53,7 @@ Note the count: `lg-clj/CLAUDE.md` still advertises 45 tests / 147 assertions.
 
 ```bash
 cd lg-clj
-LG_API_KEY=jukyu-walk-key bb run_tests.clj --server 8971 &
+LG_API_KEY=jukyu-walk-key kbb run_tests.cljk --server 8971 &
 cd ..
 ```
 
@@ -166,7 +166,7 @@ as `/tmp/jukyu-pregel-demo.clj`:
 ```
 
 ```bash
-cd lg-clj && bb /tmp/jukyu-pregel-demo.clj && cd ..
+cd lg-clj && kbb /tmp/jukyu-pregel-demo.cljk && cd ..
 ```
 
 ```
@@ -191,7 +191,7 @@ sorted by risk descending, and `propagate-full` is deterministic across runs
 input would print the same figures, so reverse the edge and drop it:
 
 ```bash
-cd lg-clj && bb -e '
+cd lg-clj && kbb -e '
 (require (quote [lg-jukyu.pregel :as pregel]))
 (def nodes [{:nodeId "n1" :domain "naphtha" :countryCode "JP" :operatorDid "did:web:refinery-a.example"
              :supplyCapacity 100 :demandCapacity 150 :confidence 0.5}

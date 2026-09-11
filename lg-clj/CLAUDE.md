@@ -8,7 +8,7 @@ twin is **ADDITIVE and COEXISTS** with the Python runtime — `langgraph.json` /
 
 ```bash
 cd 60-apps/etzhayyim-project-jukyu/lg-clj
-bb test            # or: bb run_tests.clj   (45 tests / 147 assertions green)
+kbb -M:test            # or: kbb run_tests.cljk   (45 tests / 147 assertions green)
 ```
 
 ## Layout
