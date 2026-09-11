@@ -4,7 +4,7 @@
  ;;   src   — lg-jukyu.* namespaces (12 graphs + server + audit + llm + store seam)
  ;;   test  — lg-jukyu.smoke-test (clojure.test)
  ;;
- ;; Run the suite:  bb test   (or:  bb run_tests.clj)
+ ;; Run the suite:  bb test   (or:  kbb run_tests.cljk)
  ;;
  ;; COEXISTENCE: the deployed runtime is the FastAPI pod under `lg/` (Python +
  ;; langgraph.json + Dockerfile + Helm). This clj twin is ADDITIVE — it ports the
