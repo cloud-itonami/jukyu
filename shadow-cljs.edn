@@ -1,0 +1,13 @@
+;; shadow-cljs build for the jukyu-ui appview UI of jukyu.
+;; Mirrors orgs/kotoba-lang/murakumo-studio/shadow-cljs.edn and
+;; orgs/cloud-itonami/app-6ir/shadow-cljs.edn:
+;; CLJS + reagent on kotoba-ui.core + appkit.core (murakumo-studio構成).
+{:deps {:aliases [:cljs]}
+ :nrepl {:port 9633}
+
+ :builds
+ {:app
+  {:target :browser
+   :output-dir "web/dist/js"
+   :asset-path "js"
+   :modules {:main {:init-fn cloud-itonami.jukyu.desktop/init!}}}}}
