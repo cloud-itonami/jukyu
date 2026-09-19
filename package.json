@@ -1,0 +1,13 @@
+{
+  "name": "etzhayyim-project-jukyu",
+  "version": "0.1.0",
+  "private": true,
+  "description": "jukyu (etzhayyim-project-jukyu) — jukyu-ui appview UI (shadow-cljs + reagent + kotoba-ui)",
+  "main": "index.js",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
