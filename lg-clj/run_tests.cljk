@@ -3,7 +3,7 @@
   (:require [babashka.http-client :as http]
             [cheshire.core :as json]
             [kotoba.lang.text :as str]
-            [clojure.test :as t]
+            [kotoba.test :as t]
             [org.httpkit.server :as httpkit]
             [lg-jukyu.audit :as audit]
             [lg-jukyu.cron :as cron]

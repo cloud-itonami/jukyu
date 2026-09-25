@@ -3,7 +3,7 @@
   `tests/test_smoke.py`, plus node-behaviour + Pregel-core tests the original
   could not run offline (DB/LLM are injectable here, so the propagate compute,
   validation guards and transforms verify under bb with stubs)."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is testing]]
             [langgraph.graph :as g]
             [lg-jukyu.server :as server]
             [lg-jukyu.cron :as cron]
@@ -396,16 +396,16 @@
 
 (deftest murakumo-guard
   (testing "off-fleet endpoint refused"
-    (is (thrown? clojure.lang.ExceptionInfo (llm/assert-murakumo "https://api.openai.com/v1"))))
+    (is (thrown? kerror/ExceptionInfo (llm/assert-murakumo "https://api.openai.com/v1"))))
   (testing "loopback gateway allowed"
     (is (nil? (llm/assert-murakumo "http://127.0.0.1:4000/v1")))))
 
 (deftest outward-capabilities-fail-closed
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"explicit chat capability"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"explicit chat capability"
                         (llm/chat {:user "x"})))
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"explicit run-server capability"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"explicit run-server capability"
                         (server/serve 2027)))
-  (is (thrown? clojure.lang.ExceptionInfo (llm/assert-murakumo "not-a-url"))))
+  (is (thrown? kerror/ExceptionInfo (llm/assert-murakumo "not-a-url"))))
 
 (deftest injected-murakumo-wire-contract
   (let [seen (atom nil)
