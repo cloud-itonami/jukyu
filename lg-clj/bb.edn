@@ -13,7 +13,11 @@
  ;; boundary forbids RisingWave) and the LiteLLM gateway replaced by the Murakumo
  ;; loopback (ADR-2605215000). Nothing here disturbs the live pod.
  :paths ["src" "test"]
- :deps {com-junkawasaki/langchain-clj
+ :deps {
+        ;; kotoba.lang.error replaced clojure.lang.ExceptionInfo here (2026-09-25).
+        ;; An explicit floor: tools.deps takes the NEWEST sha it is shown.
+        io.github.kotoba-lang/error {:git/sha "838dec56c9a5b74f9eec825a2fb28bda157f8cd3"}
+        com-junkawasaki/langchain-clj
         {:git/url "https://github.com/com-junkawasaki/langchain-clj"
          :git/sha "2b03859c3ee722b64f3eddd0b615a54019b17c81"}
         com-junkawasaki/langgraph-clj
