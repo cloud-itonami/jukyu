@@ -9,7 +9,7 @@
   the fallback domain snapshots are carried over verbatim. The three async
   actions (normalizeDomain / runEquilibrium / drainOutbox) POST to the
   same /cron paths and only mutate status/rows — no DB I/O in the edge UI,
-  matching the CLAUDE.md UX contract."
+  matching the AGENTS.md UX contract."
   (:require [reagent.core :as r]))
 
 (defn- bal [c s d conf]

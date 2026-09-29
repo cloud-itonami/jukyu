@@ -4,7 +4,7 @@ vertex_jukyu_* and edge_jukyu_* tables.
 NSID: com.etzhayyim.apps.jukyu.normalizeDomainAdapter
 Endpoint: POST /cron/domain-adapter/{domain}
 
-Supported domains and their source tables (per CLAUDE.md):
+Supported domains and their source tables (per AGENTS.md):
   naphtha     : mv_naphtha_country_balance, mv_naphtha_cargo_flow,
                 mv_naphtha_price_latest, mv_naphtha_supply_chain_trace
   crude_oil   : vertex_oil_field, vertex_oil_terminal, vertex_refinery
@@ -43,7 +43,7 @@ def _supply_node_vid(node_code: str, domain: str) -> str:
     h = hashlib.sha256(f"{node_code}:{domain}".encode()).hexdigest()[:16]
     return f"at://jukyu001.etzhayyim.com/com.etzhayyim.apps.jukyu.supplyNode/{h}"
 
-# Domain confidence scores from CLAUDE.md (semiconductor handled within transport)
+# Domain confidence scores from AGENTS.md (semiconductor handled within transport)
 _DOMAIN_CONFIDENCE: dict[str, float] = {
     "naphtha": 0.72,
     "crude_oil": 0.60,

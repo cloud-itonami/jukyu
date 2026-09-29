@@ -3,7 +3,7 @@
   module functions). Pure state transitions plus the three async control
   actions (normalizeDomain / runEquilibrium / drainOutbox) which POST to
   the same /cron paths and only mutate status/rows — no DB I/O in the
-  edge UI, matching the CLAUDE.md UX contract."
+  edge UI, matching the AGENTS.md UX contract."
   (:require [reagent.core :as r]
             [cloud-itonami.jukyu.state :as state]))
 
