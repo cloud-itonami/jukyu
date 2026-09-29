@@ -10,7 +10,7 @@ stress propagation over the supply chain, ranks company exposure, and writes
 target-company signals to an outbox. It does not own the domain data; the domain
 actors stay source of truth. The product intent is in
 [`JUKYU_DESIGN.md`](./JUKYU_DESIGN.md); the surface contract is in
-[`CLAUDE.md`](./CLAUDE.md).
+[`AGENTS.md`](./AGENTS.md).
 
 **Read the "What is stale in the prose here" section before trusting either.**
 Both files were written while this code lived in the monorepo, and they describe a
@@ -107,7 +107,7 @@ run here, and `kotoba/test/jukyu.test.ts` has never been executed from this repo
 
 Line 16 declares a bare `kotodama` dependency with no source. Nothing under
 `lg/` imports it — the only other mention in the repository is a container image
-name in `lg/CLAUDE.md`. `pip install -e '.[dev]'` therefore resolves it from
+name in `lg/AGENTS.md`. `pip install -e '.[dev]'` therefore resolves it from
 PyPI and installs **`kotodama 0.0.18`, "日本語の動詞を活用形に変換する" by
 Yoshiki Ohira** — an unrelated third-party library that happens to hold the name
 this workspace uses internally. Verified present in the venv after install. The
@@ -143,8 +143,8 @@ so does this README.
 **6. `jukyu.etzhayyim.com` does not resolve.** `dig +short` returns nothing for
 both `jukyu.etzhayyim.com` and `jukyu001.etzhayyim.com` (`etzhayyim.com` itself
 resolves through Cloudflare). So `did:web:jukyu.etzhayyim.com` — the actor DID
-that `CLAUDE.md`, `wrangler.jsonc` and `lg-clj/run_tests.cljk` all default to —
-cannot be resolved from this workstation, and the "live pod" both CLAUDE.md files
+that `AGENTS.md`, `wrangler.jsonc` and `lg-clj/run_tests.cljk` all default to —
+cannot be resolved from this workstation, and the "live pod" both AGENTS.md files
 call the deployed runtime is not reachable from here. This is a measurement taken
 from outside; it says nothing about whether a cluster is running.
 
@@ -170,7 +170,7 @@ Everything this repository cites by ADR number lives in **`etzhayyim/root`**
 | ADR-2605192100 / 2605192200 / 2606062100 / 2606082400 | charter + rider chain |
 
 The Kubernetes deployment is also in `etzhayyim/root`, but **not at the path
-`lg/CLAUDE.md` gives**. It is `50-infra/k8s/lg-jukyu/`
+`lg/AGENTS.md` gives**. It is `50-infra/k8s/lg-jukyu/`
 (`deployment.yaml`, `cronjob.yaml`, `kustomization.yaml`), one replica, image
 pinned to `ghcr.io/etzhayyim/kotodama:jukyu-mcp-query-1127e93592e-20260515170344-amd64`,
 `RW_URL` from the `mitama-udf-pool-rw` secret, with the domain-adapter CronJob
@@ -179,19 +179,19 @@ memory of this file.
 
 ## What is stale in the prose here
 
-`CLAUDE.md` and `JUKYU_DESIGN.md` are worth reading for intent. These specific
+`AGENTS.md` and `JUKYU_DESIGN.md` are worth reading for intent. These specific
 statements in them are no longer true of this repository:
 
 | Where | Says | Actually |
 |---|---|---|
-| `CLAUDE.md` App Identity | Manifest at `20-actors/jukyu/actor-manifest.jsonld` | not in this repo |
-| `CLAUDE.md` App Identity | Design at `60-apps/etzhayyim-project-jukyu/JUKYU_DESIGN.md` | `./JUKYU_DESIGN.md` |
-| `CLAUDE.md` Domain Adapters | eight domains ✅ with confidences 0.40–0.72 | describes the cluster; from a clone every data path is `store not configured` |
-| `lg-clj/CLAUDE.md` Run | `cd 60-apps/etzhayyim-project-jukyu/lg-clj` | `cd lg-clj` |
-| `lg-clj/CLAUDE.md` Run | 45 tests / 147 assertions | 50 tests / 160 assertions |
-| `lg/CLAUDE.md` P1 DB schema | `30-graph/graph-schema/migrations/…` | not in this repo |
-| `lg/CLAUDE.md` P1 Helm chart | `50-infra/vultr/lg-jukyu-pool/` | `etzhayyim/root` → `50-infra/k8s/lg-jukyu/` |
-| `lg/CLAUDE.md` P2 UI cockpit | "SvelteKit" at `60-apps/…/App.svelte` | plain Svelte 5 + Vite (`index.html` + `src/main.ts`, no `@sveltejs/kit`) at `appview/jukyu-ui-jukyu001/svelte/src/App.svelte` |
+| `AGENTS.md` App Identity | Manifest at `20-actors/jukyu/actor-manifest.jsonld` | not in this repo |
+| `AGENTS.md` App Identity | Design at `60-apps/etzhayyim-project-jukyu/JUKYU_DESIGN.md` | `./JUKYU_DESIGN.md` |
+| `AGENTS.md` Domain Adapters | eight domains ✅ with confidences 0.40–0.72 | describes the cluster; from a clone every data path is `store not configured` |
+| `lg-clj/AGENTS.md` Run | `cd 60-apps/etzhayyim-project-jukyu/lg-clj` | `cd lg-clj` |
+| `lg-clj/AGENTS.md` Run | 45 tests / 147 assertions | 50 tests / 160 assertions |
+| `lg/AGENTS.md` P1 DB schema | `30-graph/graph-schema/migrations/…` | not in this repo |
+| `lg/AGENTS.md` P1 Helm chart | `50-infra/vultr/lg-jukyu-pool/` | `etzhayyim/root` → `50-infra/k8s/lg-jukyu/` |
+| `lg/AGENTS.md` P2 UI cockpit | "SvelteKit" at `60-apps/…/App.svelte` | plain Svelte 5 + Vite (`index.html` + `src/main.ts`, no `@sveltejs/kit`) at `appview/jukyu-ui-jukyu001/svelte/src/App.svelte` |
 | `README.edn` | name `com-etzhayyim-app-jukyu` | `cloud-itonami/jukyu` |
 | `migration.edn` | `:source-path "60-apps/etzhayyim-project-jukyu"` | the monorepo layout it was extracted from |
 

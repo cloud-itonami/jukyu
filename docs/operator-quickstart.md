@@ -17,7 +17,7 @@ Run everything from the repository root unless a step says otherwise.
 ```bash
 git log --oneline | tail -1         # 05c8501 chore: extract app repository
 git ls-files | wc -l                # 77
-ls                                  # CLAUDE.md  JUKYU_DESIGN.md  NOTICE
+ls                                  # AGENTS.md  JUKYU_DESIGN.md  NOTICE
                                     # README.edn  README.md  appview  docs
                                     # kotoba  lg  lg-clj  migration.edn
 ```
@@ -46,7 +46,7 @@ Ran 50 tests containing 160 assertions.
 (`langchain-clj`, `langgraph-clj`, both pinned by sha in `bb.edn`) and takes a
 minute; later runs are seconds.
 
-Note the count: `lg-clj/CLAUDE.md` still advertises 45 tests / 147 assertions.
+Note the count: `lg-clj/AGENTS.md` still advertises 45 tests / 147 assertions.
 50 / 160 is correct.
 
 ## 3. Start the dispatch surface and check every branch of it
@@ -331,7 +331,7 @@ dig +short etzhayyim.com                                 # resolves via Cloudfla
 ```
 
 Neither actor host resolves, so `did:web:jukyu.etzhayyim.com` cannot be resolved
-either. `CLAUDE.md` and `lg/CLAUDE.md` both describe a running pod as the live
+either. `AGENTS.md` and `lg/AGENTS.md` both describe a running pod as the live
 runtime; from outside the cluster you cannot confirm or refute that, and this
 quickstart does not claim to. The deployment manifests are in `etzhayyim/root` at
 `50-infra/k8s/lg-jukyu/` — read them at their own tip.
@@ -343,5 +343,5 @@ quickstart does not claim to. The deployment manifests are in `etzhayyim/root` a
 - `lg-clj/test/lg_jukyu/smoke_test.cljk` — 50 tests, and the reference for how to
   stub the store per graph
 - `lg/langgraph.json` — the 12 graphs and 8 cron schedules the cluster runs
-- `CLAUDE.md` / `JUKYU_DESIGN.md` — intent and the graph/MCP contract; check
+- `AGENTS.md` / `JUKYU_DESIGN.md` — intent and the graph/MCP contract; check
   `../README.md` for which of their paths and counts have gone stale
